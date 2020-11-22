@@ -1,22 +1,18 @@
 <div>
 	<p align="center">
 		<a href="https://vercel.com">
-			<img src="https://images.iwantmyname.com/apps/logo_vercel.png" />
+			<img src="https://images.iwantmyname.com/apps/logo_vercel.png" height="250px" />
 		</a>
 	</p>
 	<p align="center">
-		<a href="https://twitter.com/hydractify">
+		<a href="https://twitter.com/thewizardlink">
 			<img src="https://img.shields.io/twitter/follow/thewizardlink.svg?style=social&logo=twitter">
 		</a>
-		<br />
 		<a href="https://github.com/wizardlink/companyhero_interview/issues">
 			<img src="https://img.shields.io/github/issues/wizardlink/companyhero_interview.svg?style=flat-square">
 		</a>
 		<a href="https://github.com/wizardlink/companyhero_interview/graphs/contributors">
 			<img src="https://img.shields.io/github/contributors/wizardlink/companyhero_interview.svg?style=flat-square">
-		</a>
-		<a href="https://github.com/wizardlink/companyhero_interview/blob/stable/LICENSE">
-			<img src="https://img.shields.io/github/license/wizardlink/companyhero_interview.svg?style=flat-square">
 		</a>
 	</p>
 </div>
@@ -29,6 +25,10 @@ Repository responsible for showcasing the test done for an interview with [Compa
 
 - [`yarn`]
 - [NodeJS], [LTS] recommended
+
+### Deploy your own
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/wizardlink/companyhero_interview/tree/master)
 
 ## Getting started
 
