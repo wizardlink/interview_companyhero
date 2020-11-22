@@ -16,7 +16,6 @@ const { Content, Footer } = Layout;
 
 function createCards(kitsu: Kitsu, { data }: IKitsuResponse): JSX.Element
 {
-	let rowAmount: number;
 	const columns: JSX.Element[] = [];
 
 	for (const anime of data)

@@ -47,4 +47,8 @@ module.exports = withLess({
 
 		return config;
 	},
+	typescript:
+	{
+		ignoreBuildErrors: true,
+	},
 });
