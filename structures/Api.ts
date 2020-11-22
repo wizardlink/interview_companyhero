@@ -1,5 +1,3 @@
-// tslint:disable comment-format
-
 // https://github.com/hydrabolt/discord.js/blob/27ccad1f1c209d1222d5846e44aa2caba2ed536d/src/rest/APIRouter.js
 
 import * as nodeFetch from "node-fetch";
@@ -49,6 +47,8 @@ const router: (options: IAPIRouterOptions) => APIRouter = ({
 						}).match(/[^=&?]+=[^=&?]+/g) ?? []).join("&");
 						url += `?${queryString}`;
 					}
+
+					if (options.extend) url = options.extend(url);
 
 					const res: fetch.Response = await fetch.default(url, {
 						body: options.data ? JSON.stringify(options.data) : undefined,
@@ -121,6 +121,7 @@ export interface IAPIOptions {
 	data?: any;
 	headers?: { [name: string]: string };
 	query?: { [name: string]: string | number | boolean };
+	extend?: (url: string) => string;
 	type?: {
 		[K in keyof fetch.Body]: fetch.Body[K] extends () => void
 			? K

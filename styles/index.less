@@ -1,3 +1,8 @@
+.ant-anchor-wrapper, .ant-anchor-ink::before
+{
+	background-color: transparent !important;
+}
+
 .banner
 {
 	background: url("../assets/home_bg.png") no-repeat center center;
@@ -9,7 +14,7 @@
 	z-index: -1;
 }
 
-.content
+.home_content
 {
 	/* Position the text next to the beam of light */
 	position: absolute;
@@ -26,12 +31,13 @@
 .title
 {
 	/* Style the text */
-	color: white;
+	color: white !important;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-	font-size: 4rem;
+	font-size: 4rem !important;
 
 	/* Position text */
 	margin: 2px;
+	margin-bottom: 2px !important;
 	text-align: center;
 }
 
@@ -40,7 +46,7 @@
 	.title();
 
 	display: block;
-	font-size: 1rem;
+	font-size: 1rem !important;
 }
 
 .anchor
@@ -52,7 +58,7 @@
 {
 	.title();
 
-	font-size: 2rem;
+	font-size: 2rem !important;
 
 	margin-top: 2em;
 

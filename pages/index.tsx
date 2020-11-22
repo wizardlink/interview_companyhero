@@ -6,7 +6,7 @@ import {
 import { ArrowDownOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
-import css from "../styles/index.less";
+import "../styles/index.less";
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
@@ -15,14 +15,14 @@ export default function Home(): JSX.Element
 {
 	return (
 		<section id="home">
-			<div className={css.banner}></div>
+			<div className="banner"></div>
 			<Layout>
-				<Content className={css.content}>
-					<Title className={css.title}>COMPANY HERO</Title>
-					<Text className={css.subtitle}>Browse through countless animes at ease.</Text>
-					<Anchor className={css.anchor}>
+				<Content className="home_content">
+					<Title className="title">COMPANY HERO</Title>
+					<Text className="subtitle">Browse through countless animes at ease.</Text>
+					<Anchor className="anchor">
 						<Link href="/anime">
-							<ArrowDownOutlined className={css.arrow} />
+							<ArrowDownOutlined className="arrow" />
 						</Link>
 					</Anchor>
 				</Content>

@@ -1,5 +1,7 @@
 .layout
 {
+	background: #edf1f5;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -7,11 +9,47 @@
 	width: 100vw;
 }
 
-.content
+.anime_content
 {
-	background: gray;
+	background: #fafafa;
 	border-radius: 25px;
 
-	height: 95%;
-	width: 95%;
+	width: 95vw;
+	max-width: 95vw;
+	max-height: 85vh;
+}
+
+.gutter-row
+{
+	display: flex;
+	justify-content: center;
+	margin: 20 0;
+	max-width: 18rem;
+	text-align: center;
+}
+
+.cover_art
+{
+	max-height: 4rem;
+	max-width: 14rem;
+}
+
+.cover_art > img
+{
+	border-radius: 8px;
+}
+
+.video
+{
+	height: 23rem;
+	width: 46rem;
+	border-radius: 8px;
+}
+
+.loading
+{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
