@@ -5,7 +5,7 @@ const path = require("path");
 
 // Custom ant.design configuration.
 const themeVariables = lessToJS(
-	fs.readFileSync(path.resolve(__dirname, "./assets/antd-custom.less"), "utf8"),
+	fs.readFileSync(path.resolve(__dirname, "./styles/ant-theme.less"), "utf8"),
 );
 
 /* Required to be able to work with LESS. */
