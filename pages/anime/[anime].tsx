@@ -11,7 +11,7 @@ import {
 import { useRouter } from "next/router";
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
 
-import { Anime as KitsuAnime, Kitsu, IKitsuResponse, IKitsuData } from "../../handlers/Kitsu";
+import { Anime as KitsuAnime, Kitsu, IKitsuResponse } from "../../handlers/Kitsu";
 import "antd/dist/antd.less";
 import "../../styles/anime.less";
 
