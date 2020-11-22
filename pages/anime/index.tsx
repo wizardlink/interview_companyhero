@@ -61,7 +61,9 @@ export default function AnimeList(): JSX.Element
 							{
 								kitsu.searchAnime({ pageOffset: page.toString() + kitsu.pageSize }).then(list => setAnimes(list));
 								console.log(animes);
-							}} total={1000}
+							}}
+							total={1000}
+							showSizeChanger={false}
 						/>
 					</Footer>
 				</Layout>
