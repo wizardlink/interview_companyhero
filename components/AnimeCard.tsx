@@ -1,17 +1,79 @@
-import { Card, Popover, Typography, Divider } from "antd";
+import {
+	Card,
+	Divider,
+	Popover,
+	Typography,
+} from "antd";
 import Link from "next/link";
 
-import { Anime as KitsuAnime, IKitsuData, IKitsuAttributes } from "../handlers/Kitsu";
+import { Anime as KitsuAnime, IKitsuData } from "../handlers/Kitsu";
 import "../styles/card.less";
 
 const { Meta } = Card;
 const { Text, Title } = Typography;
 
-function createMeta(attributes: IKitsuAttributes): JSX.Element
+/**
+ * Component for handling individual anime cards.
+ * @param {object} props Component's properties
+ * @return {JSX.Element}
+ */
+export function AnimeCard({ id, attributes }: IKitsuData) : JSX.Element
+{
+	// Helper class for handling anime metadata.
+	const anime = new KitsuAnime({ id, type: "", attributes });
+
+	return (
+		<Link href={`/anime/${id}`}>
+
+			{/* Rich tooltip with the title and description of the anime. */}
+			<Popover content={ <PopData anime={anime} /> }>
+				<Card
+					hoverable // Add css animation when hovering
+					className="card"
+					cover={
+						<img className="anime_cover" alt={anime.title} src={attributes.posterImage.original} />
+					}
+				>
+					<CardMeta anime={anime} />
+				</Card>
+			</Popover>
+		</Link>
+	);
+}
+
+/**
+ * Popup tooltip component, used when hovering an anime.
+ * @param {object} props Component's properties
+ * @return {JSX.Element}
+ */
+function PopData({ anime }: { anime: KitsuAnime }): JSX.Element
+{
+	return (
+		<div style={{ maxWidth: 400 }}>
+			<Title level={5}>
+				{ anime.title }
+			</Title>
+
+			<Divider style={{ margin: "0 auto", minWidth: "95%", width: "95%" }} />
+
+			<Text type="secondary">
+				{ anime.truncatedDescription() }
+			</Text>
+		</div>
+	);
+}
+
+/**
+ * Create all metadata for the card.
+ * @param {object} props Component's properties
+ * @return {JSX.Element}
+ */
+function CardMeta({ anime }: { anime: KitsuAnime }): JSX.Element
 {
 	let title: string = "";
 
-	for (const aTitle of Object.values(attributes.titles))
+	// Look for the first valid title.
+	for (const aTitle of Object.values(anime.attributes.titles))
 	{
 		if (aTitle)
 		{
@@ -21,40 +83,6 @@ function createMeta(attributes: IKitsuAttributes): JSX.Element
 	}
 
 	return (
-		<Meta title={title} description={/^\d{4}/.exec(attributes.startDate)} />
-	);
-}
-
-function PopData({ attributes }: { attributes: IKitsuAttributes }): JSX.Element
-{
-	const anime = new KitsuAnime({ id: 0, type: "", attributes });
-
-	return (
-		<div style={{ maxWidth: 400 }}>
-			<Title level={5}>{anime.title}</Title>
-			<Divider style={{ margin: "0 auto", minWidth: "95%", width: "95%" }} />
-			<Text type="secondary">
-				{anime.truncatedDescription()}
-			</Text>
-		</div>
-	);
-}
-
-export function AnimeCard({ id, attributes }: IKitsuData) : JSX.Element
-{
-	return (
-		<Link href={`/anime/${id}`}>
-			<Popover content={<PopData attributes={attributes} />}>
-				<Card
-					hoverable
-					className="card"
-					cover={
-						<img className="anime_cover" alt={attributes.titles.en} src={attributes.posterImage.original} />
-					}
-				>
-					{ createMeta(attributes) }
-				</Card>
-			</Popover>
-		</Link>
+		<Meta title={title} description={/^\d{4}/.exec(anime.attributes.startDate)} />
 	);
 }

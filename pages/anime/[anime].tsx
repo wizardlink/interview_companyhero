@@ -1,18 +1,17 @@
 import {
-	Divider,
-	Descriptions,
-	Row,
 	Col,
-	Spin,
-	Typography,
+	Descriptions,
+	Divider,
 	Image,
 	Layout,
+	Row,
+	Spin,
+	Typography,
 } from "antd";
 import { useRouter } from "next/router";
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
 
 import { Anime as KitsuAnime, Kitsu, IKitsuResponse } from "../../handlers/Kitsu";
-import "antd/dist/antd.less";
 import "../../styles/anime.less";
 
 const { Content } = Layout;
@@ -21,36 +20,49 @@ const { Item } = Descriptions;
 
 export default function Anime(): JSX.Element
 {
-	const { query: { anime } } = useRouter();
+	/* Get the anime that the user opened */
+	const { query: { anime: animeQuery } } = useRouter();
 
-	const [animes, setAnimes] = useState({}) as [IKitsuResponse, Dispatch<SetStateAction<unknown>>];
+	const [animeState, setAnime] = useState({}) as [IKitsuResponse, Dispatch<SetStateAction<unknown>>];
+
+	// Use the handler for the Kitsu API.
 	const kitsu = new Kitsu();
 
 	useEffect(() =>
 	{
-		if (!Object.keys(animes).length) kitsu.searchAnime({ id: anime as string }).then(list => setAnimes(list));
+		// Check if it has been fetched already.
+		if (!Object.keys(animeState).length) kitsu.searchAnime({ id: animeQuery as string }).then(list => setAnime(list));
 	});
 
-	if (Object.keys(animes).length)
+	// Render all animes if fetched.
+	if (Object.keys(animeState).length)
 	{
-		const anime = new KitsuAnime(animes.data[0]);
+		// Get the anime fetched
+		const anime = new KitsuAnime(animeState.data[0]);
 
 		return (
 			<section id="animes">
 				<Layout className="layout">
 					<Content className="anime_content">
+
+						{/* "Header" of the anime */}
 						<Row style={{ margin: 40 }}>
+							{ /* Cover art for the anime */}
 							<Col span={5}>
 								<Image
 									src={anime.attributes.posterImage.original}
 									className="cover_art"
 								/>
 							</Col>
+
+							{ /* Title and description of the anime */ }
 							<Col span={18}>
 								<Title level={2}>{anime.title}</Title>
 								<Text type="secondary">{anime.attributes.description}</Text>
 							</Col>
 						</Row>
+
+						{ /* Grid with *metadata* of the anime */ }
 						<Row>
 							<Descriptions bordered style={{ margin: "0 auto 2em auto" }}>
 								<Item label="Start date">{anime.attributes.startDate}</Item>
@@ -61,7 +73,10 @@ export default function Anime(): JSX.Element
 								<Item label="Total length">{anime.attributes.totalLength}m</Item>
 							</Descriptions>
 						</Row>
+
 						<Divider style={{ margin: "0 auto", minWidth: "95%", width: "95%" }} />
+
+						{/* Anime's trailer */}
 						<div style={{ textAlign: "center", marginTop: 15 }}>
 							<Title type="secondary" level={4}>Trailer</Title>
 							<iframe className="video" src={`https://www.youtube.com/embed/${anime.attributes.youtubeVideoId}`} frameBorder={0}></iframe>
@@ -72,5 +87,6 @@ export default function Anime(): JSX.Element
 		);
 	}
 
+	// Returned when loading.
 	return (<div><Spin size="large" className="loading" /></div>);
 }

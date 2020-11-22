@@ -11,6 +11,10 @@ import "../styles/index.less";
 const { Content } = Layout;
 const { Title, Text } = Typography;
 
+/**
+ * Home component.
+ * @return {JSX.Element}
+ */
 export default function Home(): JSX.Element
 {
 	return (

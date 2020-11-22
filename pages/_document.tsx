@@ -13,6 +13,7 @@ export default class Document extends NextDocument
 		return (
 			<Html>
 				<Head />
+				{ /* Remove the default margin of the body. */ }
 				<body style={{ margin: 0 }}>
 					<Main />
 					<NextScript />

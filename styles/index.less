@@ -1,3 +1,4 @@
+/* Remove the background added by antd */
 .ant-anchor-wrapper, .ant-anchor-ink::before
 {
 	background-color: transparent !important;
@@ -16,7 +17,7 @@
 
 .home_content
 {
-	/* Position the text next to the beam of light */
+	/* Position the text next to the beam of light (16:9) */
 	position: absolute;
 	top: 30%;
 	left: 70%;
@@ -43,6 +44,7 @@
 
 .subtitle
 {
+	/* Inherit title's configuration for positioning and text styling */
 	.title();
 
 	display: block;
@@ -51,15 +53,18 @@
 
 .anchor
 {
+	/* Align the arrow */
 	text-align: center;
 }
 
 .arrow
 {
+	/* Inherit title */
 	.title();
 
 	font-size: 2rem !important;
 
+	/* Push the title/subtitle upwards */
 	margin-top: 2em;
 
 	@media (prefers-reduced-motion: no-preference)
@@ -68,6 +73,7 @@
 	}
 }
 
+/* Animate the arrow up and down (with bounce) */
 @keyframes arrow_move
 {
 	0%, 20%, 50%, 80%, 100% {

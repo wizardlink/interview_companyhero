@@ -1,5 +1,7 @@
 // https://github.com/hydrabolt/discord.js/blob/27ccad1f1c209d1222d5846e44aa2caba2ed536d/src/rest/APIRouter.js
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import * as nodeFetch from "node-fetch";
 import { stringify } from "querystring";
 

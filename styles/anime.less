@@ -5,6 +5,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	/* Occupy whole page */
 	height: 100vh;
 	width: 100vw;
 }
@@ -21,24 +23,29 @@
 
 .gutter-row
 {
+	/* Position the rows more properly */
 	display: flex;
 	justify-content: center;
 	margin: 20 0;
-	max-width: 18rem;
 	text-align: center;
+
+	max-width: 18rem;
 }
 
+/* Give a limit to the cover art of the anime */
 .cover_art
 {
 	max-height: 4rem;
 	max-width: 14rem;
 }
 
+/* Add a border to the bottom of the images of each card */
 .cover_art > img
 {
 	border-radius: 8px;
 }
 
+/* Limit YouTube's embed size */
 .video
 {
 	height: 23rem;
@@ -46,6 +53,7 @@
 	border-radius: 8px;
 }
 
+/* Position on the center of the screen the loading icon */
 .loading
 {
 	position: absolute;
