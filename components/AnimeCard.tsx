@@ -17,13 +17,13 @@ const { Text, Title } = Typography;
  * @param {object} props Component's properties
  * @return {JSX.Element}
  */
-export function AnimeCard({ id, attributes }: IKitsuData) : JSX.Element
+export function AnimeCard({ anime: { id, attributes }, page }: { anime: IKitsuData, page: string }) : JSX.Element
 {
 	// Helper class for handling anime metadata.
 	const anime = new KitsuAnime({ id, type: "", attributes });
 
 	return (
-		<Link href={`/anime/${id}`}>
+		<Link href={`/anime/${id}?prevPage=${page}`}>
 
 			{/* Rich tooltip with the title and description of the anime. */}
 			<Popover content={ <PopData anime={anime} /> }>

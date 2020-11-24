@@ -35,8 +35,30 @@
 /* Give a limit to the cover art of the anime */
 .cover_art
 {
-	max-height: 4rem;
-	max-width: 14rem;
+	/* Responsive size handling */
+	@media (min-width: 1200px)
+	{
+		max-height: 4rem;
+		max-width: 8rem;
+	}
+
+	@media (min-width: 1200px)
+	{
+		max-height: 4rem;
+		max-width: 8rem;
+	}
+
+	@media (min-width: 1200px)
+	{
+		max-height: 4rem;
+		max-width: 8rem;
+	}
+
+	@media (min-width: 1800px)
+	{
+		max-height: 4rem;
+		max-width: 12rem;
+	}
 }
 
 /* Add a border to the bottom of the images of each card */
@@ -48,8 +70,12 @@
 /* Limit YouTube's embed size */
 .video
 {
-	height: 23rem;
-	width: 46rem;
+	@media (min-width: 1800px)
+	{
+		height: 21rem;
+		width: 44rem;
+	}
+
 	border-radius: 8px;
 }
 

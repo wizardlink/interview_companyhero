@@ -1,5 +1,6 @@
 import {
 	Col,
+	Button,
 	Descriptions,
 	Divider,
 	Image,
@@ -8,20 +9,22 @@ import {
 	Spin,
 	Typography,
 } from "antd";
-import { useRouter } from "next/router";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 import { Anime as KitsuAnime, Kitsu, IKitsuResponse } from "../../handlers/Kitsu";
 import "../../styles/anime.less";
 
-const { Content } = Layout;
+const { Content, Header } = Layout;
 const { Title, Text } = Typography;
 const { Item } = Descriptions;
 
 export default function Anime(): JSX.Element
 {
 	/* Get the anime that the user opened */
-	const { query: { anime: animeQuery } } = useRouter();
+	const { query: { anime: animeQuery, prevPage } } = useRouter();
 
 	const [animeState, setAnime] = useState({}) as [IKitsuResponse, Dispatch<SetStateAction<unknown>>];
 
@@ -43,6 +46,12 @@ export default function Anime(): JSX.Element
 		return (
 			<section id="animes">
 				<Layout className="layout">
+					<Header style={{ position: "fixed", right: "93%", bottom: "93%", background: "transparent" }}>
+						<Link href={`/anime?page=${prevPage}`}>
+							<Button shape="circle" icon={<ArrowLeftOutlined />} />
+						</Link>
+					</Header>
+
 					<Content className="anime_content">
 
 						{/* "Header" of the anime */}

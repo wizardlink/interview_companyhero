@@ -6,6 +6,7 @@ import {
 	Spin,
 } from "antd";
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import { useRouter } from "next/router";
 
 import { Kitsu, IKitsuResponse} from "../../handlers/Kitsu";
 import { AnimeCard } from "../../components/AnimeCard";
@@ -15,6 +16,16 @@ const { Content, Footer } = Layout;
 
 export default function AnimeList(): JSX.Element
 {
+	/* Get the current page, if there is any set */
+	const router = useRouter();
+	const { query: { page: queryPage } } = router;
+	const curPage = (kitsu: Kitsu, page?: number) =>
+	{
+		if (page) return (page - 1) * kitsu.pageSize;
+
+		return ((parseInt(queryPage as string) ?? 1) - 1) * kitsu.pageSize;
+	};
+
 	const [animes, setAnimes] = useState({}) as [IKitsuResponse, Dispatch<SetStateAction<unknown>>];
 
 	// Use the handler for the Kitsu API.
@@ -24,7 +35,7 @@ export default function AnimeList(): JSX.Element
 	useEffect(() =>
 	{
 		// Check if it has been fetched already.
-		if (!Object.keys(animes).length) kitsu.searchAnime().then(list => setAnimes(list));
+		if (!Object.keys(animes).length) kitsu.searchAnime({ pageOffset: curPage(kitsu).toString() }).then(list => setAnimes(list));
 	});
 
 	// Render all animes if fetched.
@@ -36,7 +47,7 @@ export default function AnimeList(): JSX.Element
 
 					{/* Anime grid */}
 					<Content className="anime_content">
-						<CardGrid res={animes} />
+						<CardGrid res={animes} page={queryPage as string} />
 					</Content>
 
 					{/* Pagination handling */}
@@ -44,10 +55,12 @@ export default function AnimeList(): JSX.Element
 						<Pagination
 							onChange={(page) =>
 							{
+								router.push(`/anime?page=${page}`);
 								kitsu.searchAnime({
-									pageOffset: ((page - 1) * kitsu.pageSize).toString(), // Offset by the current page times the amount of animes per page
+									pageOffset: curPage(kitsu, page).toString(), // Offset by the current page times the amount of animes per page
 								}).then(list => setAnimes(list));
 							}}
+							defaultCurrent={parseInt(queryPage as string) ?? 1}
 							total={10000} // Did not have enough time to create endless pagination
 							showSizeChanger={false} // Do not show the page size changer, due to Kitsu limitations plus limited time
 						/>
@@ -66,7 +79,7 @@ export default function AnimeList(): JSX.Element
  * @param {object} props Component's prototypes
  * @return {JSX.Element}
  */
-function CardGrid({ res: { data } }: { res: IKitsuResponse }): JSX.Element
+function CardGrid({ res: { data }, page }: { res: IKitsuResponse, page: string }): JSX.Element
 {
 	const columns: JSX.Element[] = [];
 
@@ -74,7 +87,7 @@ function CardGrid({ res: { data } }: { res: IKitsuResponse }): JSX.Element
 	{
 		columns.push((
 			<Col span={4} className="gutter-row" key={anime.id} >
-				<AnimeCard id={anime.id} type={anime.type} attributes={anime.attributes}  />
+				<AnimeCard anime={anime} page={page} />
 			</Col>
 		));
 	}

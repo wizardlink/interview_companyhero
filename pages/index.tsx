@@ -25,7 +25,7 @@ export default function Home(): JSX.Element
 					<Title className="title">COMPANY HERO</Title>
 					<Text className="subtitle">Browse through countless animes at ease.</Text>
 					<Anchor className="anchor">
-						<Link href="/anime">
+						<Link href="/anime?page=1">
 							<ArrowDownOutlined className="arrow" />
 						</Link>
 					</Anchor>
