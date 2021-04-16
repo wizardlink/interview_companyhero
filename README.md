@@ -8,16 +8,16 @@
 		<a href="https://twitter.com/thewizardlink">
 			<img src="https://img.shields.io/twitter/follow/thewizardlink.svg?style=social&logo=twitter">
 		</a>
-		<a href="https://github.com/wizardlink/companyhero_interview/issues">
-			<img src="https://img.shields.io/github/issues/wizardlink/companyhero_interview.svg?style=flat-square">
+		<a href="https://github.com/wizardlink/interview_companyhero/issues">
+			<img src="https://img.shields.io/github/issues/wizardlink/interview_companyhero.svg?style=flat-square">
 		</a>
-		<a href="https://github.com/wizardlink/companyhero_interview/graphs/contributors">
-			<img src="https://img.shields.io/github/contributors/wizardlink/companyhero_interview.svg?style=flat-square">
+		<a href="https://github.com/wizardlink/interview_companyhero/graphs/contributors">
+			<img src="https://img.shields.io/github/contributors/wizardlink/interview_companyhero.svg?style=flat-square">
 		</a>
 	</p>
 </div>
 
-## companyhero_interview
+## interview_companyhero
 
 Repository responsible for showcasing the test done for an interview with [Company Hero].
 
@@ -28,7 +28,7 @@ Repository responsible for showcasing the test done for an interview with [Compa
 
 ### Deploy your own
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/wizardlink/companyhero_interview/tree/master)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/wizardlink/interview_companyhero/tree/master)
 
 ## Getting started
 
